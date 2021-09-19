@@ -1,4 +1,4 @@
-package com18again.withmountain;
+package com.withmountain.again18;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
