@@ -42,4 +42,10 @@
 		FROM user_table
 		WHERE id=#{id}
 	</select>
+	
+	<select id="selectUserByEmail" parameterType="String" resultType="UserDTO">
+		SELECT <include refid="userColumns" />
+		FROM user_table
+		WHERE email=#{email} 
+	</select>
 </mapper>

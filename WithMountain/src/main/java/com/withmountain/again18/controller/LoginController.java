@@ -1,0 +1,57 @@
+package com.withmountain.again18.controller;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.withmountain.again18.domain.LoginReqDTO;
+import com.withmountain.again18.domain.UserDTO;
+import com.withmountain.again18.service.LoginService;
+import com.withmountain.again18.util.SessionConstants;
+
+@RestController
+public class LoginController {
+	
+	@Autowired
+	private LoginService loginService;
+	
+	@PostMapping("/login")
+	ResponseEntity<String> login(@RequestBody LoginReqDTO reqBody, HttpServletRequest request) {
+		try {
+			UserDTO loginUser = loginService.login(reqBody);
+			
+			if (loginUser!=null) {
+				HttpSession session = request.getSession();	// 세션이 있으면 있는 세션 반환, 없으면 신규 세션을 생성하여 반환
+			    session.setAttribute(SessionConstants.LOGIN_USER, loginUser);	// 세션에 로그인 회원 정보 보관
+			    
+			    return ResponseEntity.ok("로그인 성공");
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+	}
+	
+	@PostMapping("/logout")
+	ResponseEntity<String> logout(HttpServletRequest request) {
+		try {
+			HttpSession session = request.getSession(false);
+			
+			if (session!=null)
+				session.invalidate();	//세션 무효화
+			
+			return ResponseEntity.ok("로그아웃 성공");
+		} catch(Exception e) {
+			
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+		}
+	}
+
+}

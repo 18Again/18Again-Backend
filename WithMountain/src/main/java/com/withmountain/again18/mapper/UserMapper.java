@@ -6,7 +6,8 @@ import com.withmountain.again18.domain.UserDTO;
 
 @Mapper
 public interface UserMapper {
-	public int insertUser(UserDTO newUser);
-	public UserDTO selectUser(Long id);
+	int insertUser(UserDTO newUser);
+	UserDTO selectUser(Long id);
+	UserDTO selectUserByEmail(String email);
 
 }
