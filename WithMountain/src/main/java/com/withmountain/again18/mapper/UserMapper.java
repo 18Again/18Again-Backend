@@ -9,5 +9,5 @@ public interface UserMapper {
 	int insertUser(UserDTO newUser);
 	UserDTO selectUser(Long id);
 	UserDTO selectUserByEmail(String email);
-
+	int updateUserTaste(UserDTO user);
 }

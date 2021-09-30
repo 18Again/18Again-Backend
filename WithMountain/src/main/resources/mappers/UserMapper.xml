@@ -48,4 +48,15 @@
 		FROM user_table
 		WHERE email=#{email} 
 	</select>
+	
+	<update id="updateUserTaste" parameterType="UserDTO">
+		UPDATE user_table
+		SET friendship=#{friendship},
+			climbing_mate=#{climbingMate},
+			climbing_level=#{climbingLevel},
+			difficulty=#{difficulty},
+			exercise=#{exercise},
+			frequency=#{frequency}
+		WHERE id=#{id}
+	</update>
 </mapper>
