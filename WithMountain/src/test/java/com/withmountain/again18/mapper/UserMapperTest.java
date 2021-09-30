@@ -41,5 +41,14 @@ public class UserMapperTest {
 			e.printStackTrace();
 		}
 	}
+	
+	@Test
+	void selectUserByEmailTest() {
+		try {
+			System.out.println(userMapper.selectUserByEmail("user1@gmail.com").toString());
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 }
