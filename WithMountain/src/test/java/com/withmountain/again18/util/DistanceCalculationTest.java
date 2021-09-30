@@ -37,10 +37,10 @@ public class DistanceCalculationTest {
 		master.put("frequency", 0.0);
 		
 		HashMap<String, Double> other = new HashMap<String, Double>();
-		other.put("exercise", 0.5);
-		other.put("difficulty", 0.5);
-		other.put("climbingLevel", 0.66);
-		other.put("frequency", 0.5);
+		other.put("exercise", 1.0);
+		other.put("difficulty", 1.0);
+		other.put("climbingLevel", 1.0);
+		other.put("frequency", 1.0);
 		
 		System.out.println(distanceCalculation.calculateOrdinalData(master, other));
 	}
