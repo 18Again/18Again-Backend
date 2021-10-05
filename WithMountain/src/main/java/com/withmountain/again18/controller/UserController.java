@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,8 +27,12 @@ public class UserController {
 	private UserService userService;
 	
 	@GetMapping()
-	ResponseEntity<UserDTO> getUserById(@RequestParam(value="id", required=false) long id) {
+	ResponseEntity<UserDTO> getUserById(HttpServletRequest req, @RequestParam(value="id", required=false) long id) {
 		UserDTO user = null;
+		
+		HttpSession session = req.getSession();
+		if (session.getAttribute(SessionConstants.LOGIN_USER)==null)
+			return ResponseEntity.status(401).build();
 		
 		try {
 			user = userService.getUserById(id);
