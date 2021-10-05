@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.withmountain.again18.domain.CreateUserResDTO;
@@ -26,8 +27,8 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	@GetMapping(value="/{id}")
-	ResponseEntity<UserDTO> getUserById(@PathVariable(value="id") long id) {
+	@GetMapping()
+	ResponseEntity<UserDTO> getUserById(@RequestParam(value="id", required=false) long id) {
 		UserDTO user = null;
 		
 		try {
