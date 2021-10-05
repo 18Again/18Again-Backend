@@ -2,7 +2,7 @@ package com.withmountain.again18.domain;
 
 import java.time.LocalDateTime;
 
-//import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 
 public class BoardDTO {
 
@@ -14,7 +14,7 @@ public class BoardDTO {
 	private String content;
 	private int gender;
 	
-	//@JsonDeserialize
+	
 	private LocalDateTime insert_time;
 	private LocalDateTime update_time;
 	public int getId() {

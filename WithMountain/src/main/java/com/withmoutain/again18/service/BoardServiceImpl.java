@@ -15,6 +15,8 @@ public class BoardServiceImpl implements BoardService {
 	@Autowired
 	private BoardMapper boardMapper;
 	
+	
+	/*
 	@Override
 	public boolean registerBoard(BoardDTO params) {
 		int queryResult=0;
@@ -46,6 +48,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 	*/
 	
+	/*
 	@Override
 	public List<BoardDTO> getBoardList() {
 		
@@ -61,6 +64,17 @@ public class BoardServiceImpl implements BoardService {
 		
 		
 	}
+	*/
+	@Override
+	public List<BoardDTO> selectBoardList() throws Exception{
+		return boardMapper.selectBoardList();
+	}
+	
+	@Override
+	public void insertBoard(BoardDTO board) throws Exception{
+		boardMapper.insertBoard(board);
+	}
+	
 	
 
 }

@@ -31,7 +31,7 @@
 		)
 	</insert>
 	
-	<select id="selectBoardDetail" parameterType="long" resultType="BoardDTO">
+	<select id="selectBoardDetail" parameterType="long" resultType="com.withmountain.again18.domain.BoardDTO">
 		SELECT
 			<include refid="boardColumns"/>
 		FROM
@@ -65,7 +65,7 @@
 	</update>
 	
 	
-	<select id="selectBoardList" parameterType="BoardDTO" resultType="BoardDTO">
+	<select id="selectBoardList" parameterType="com.withmountain.again18.domain.BoardDTO" resultType="com.withmountain.again18.domain.BoardDTO">
 		SELECT
 			<include refid="boardColumns"/>
 		FROM
@@ -75,7 +75,8 @@
 			id DESC,
 			insert_time DESC
 	</select>
-	<select id="selectBoardTotalCount" parameterType="BoardDTO" resultType="int">
+	
+	<select id="selectBoardTotalCount" parameterType="com.withmountain.again18.domain.BoardDTO" resultType="int">
 		SELECT
 			COUNT(*)
 		FROM
