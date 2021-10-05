@@ -54,4 +54,16 @@ public class UserServiceImpl implements UserService {
 		return userMapper.selectUserByEmail(email);
 	}
 
+	@Override
+	public int getUserCntByNickname(String nickname) {
+		
+		return userMapper.getUserCntByNickname(nickname);
+	}
+
+	@Override
+	public int getUserCntByEmail(String email) {
+	
+		return userMapper.getUserCntByEmail(email);
+	}
+
 }

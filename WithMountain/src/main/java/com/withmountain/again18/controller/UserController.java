@@ -40,6 +40,27 @@ public class UserController {
 		return (user==null)? new ResponseEntity<UserDTO>(user, HttpStatus.NO_CONTENT): new ResponseEntity<UserDTO>(user, HttpStatus.OK);
 	}
 	
+	@GetMapping(value="/double")
+	ResponseEntity<String> checkDoubleUser(@RequestParam(value="nickname", required=false) String nickname, @RequestParam(value="email", required=false) String email) {
+		if (nickname==null&&email==null)
+			return ResponseEntity.badRequest().build();
+		
+		int cnt = 0;
+		
+		try {
+			if (nickname==null) {
+				cnt = userService.getUserCntByEmail(email);
+			} else {
+				cnt = userService.getUserCntByNickname(nickname);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return new ResponseEntity<>(Integer.toString(cnt), HttpStatus.OK);
+	}
+	
 	@PostMapping
 	ResponseEntity<CreateUserResDTO> createUser(@RequestBody UserDTO newUser, HttpServletRequest request) {
 		try {

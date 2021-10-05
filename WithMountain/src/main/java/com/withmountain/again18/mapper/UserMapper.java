@@ -10,4 +10,6 @@ public interface UserMapper {
 	UserDTO selectUser(Long id);
 	UserDTO selectUserByEmail(String email);
 	int updateUserTaste(UserDTO user);
+	int getUserCntByNickname(String nickname);
+	int getUserCntByEmail(String email);
 }

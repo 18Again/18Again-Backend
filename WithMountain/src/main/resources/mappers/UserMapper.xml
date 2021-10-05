@@ -49,6 +49,18 @@
 		WHERE email=#{email} 
 	</select>
 	
+	<select id="getUserCntByNickname" parameterType="String" resultType="int">
+		SELECT COUNT(*)
+		FROM user_table
+		WHERE nickname=#{nickname}
+	</select>
+	
+	<select id="getUserCntByEmail" parameterType="String" resultType="int">
+		SELECT COUNT(*)
+		FROM user_table
+		WHERE email=#{email}
+	</select>
+	
 	<update id="updateUserTaste" parameterType="UserDTO">
 		UPDATE user_table
 		SET friendship=#{friendship},
