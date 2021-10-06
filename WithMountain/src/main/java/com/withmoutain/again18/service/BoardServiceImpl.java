@@ -54,7 +54,7 @@ public class BoardServiceImpl implements BoardService {
 		
 		List<BoardDTO> boardList=Collections.emptyList();
 		int boardTotalCount=boardMapper.selectBoardTotalCount();
-		
+		9z
 		if(boardTotalCount>0) {
 			boardList=boardMapper.selectBoardList();
 		}
@@ -75,6 +75,20 @@ public class BoardServiceImpl implements BoardService {
 		boardMapper.insertBoard(board);
 	}
 	
+	@Override
+	public BoardDTO selectBoardDetail(int boardId) throws Exception{
+		BoardDTO board=boardMapper.selectBoardDetail(boardId);
+		return board;
+	}
 	
+	@Override
+	public void updateBoard(BoardDTO board) throws Exception{
+		boardMapper.updateBoard(board);
+	}
+	
+	@Override
+	public void deleteBoard(int boardId) throws Exception{
+		boardMapper.deleteBoard(boardId);
+	}
 
 }
