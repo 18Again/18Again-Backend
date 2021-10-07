@@ -43,12 +43,6 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserDTO getUserById(long id) {
-		
-		return userMapper.selectUser(id);
-	}
-
-	@Override
 	public UserDTO getUserByEmail(String email) {
 	
 		return userMapper.selectUserByEmail(email);
