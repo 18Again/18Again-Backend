@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.withmountain.again18.domain.CreateUserResDTO;
 import com.withmountain.again18.domain.UpdateUserTasteResDTO;
@@ -27,15 +28,15 @@ public class UserController {
 	private UserService userService;
 	
 	@GetMapping()
-	ResponseEntity<UserDTO> getUserById(HttpServletRequest req, @RequestParam(value="id", required=false) long id) {
+	ResponseEntity<UserDTO> getUserByEamil(HttpServletRequest req, @RequestParam(value="email", required=false) String email) {
 		UserDTO user = null;
 		
 		HttpSession session = req.getSession();
 		if (session.getAttribute(SessionConstants.LOGIN_USER)==null)
-			return ResponseEntity.status(401).build();
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
 		
 		try {
-			user = userService.getUserById(id);
+			user = userService.getUserByEmail(email);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -93,8 +94,9 @@ public class UserController {
 	}
 
 	@PutMapping("/taste")
-	ResponseEntity<UpdateUserTasteResDTO> createUserTaste(@RequestBody UserDTO taste) {
+	ResponseEntity<UpdateUserTasteResDTO> createUserTaste(@SessionAttribute(name = SessionConstants.LOGIN_USER, required = false) UserDTO loginUser, @RequestBody UserDTO taste) {
 		try {
+			taste.setId(loginUser.getId());
 			boolean result = userService.registerUser(taste);
 			
 			if (result) {
