@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.withmountain.again18.domain.LoginReqDTO;
 import com.withmountain.again18.domain.UserDTO;
@@ -40,17 +42,17 @@ public class LoginController {
 	}
 	
 	@PostMapping("/logout")
-	ResponseEntity<String> logout(HttpServletRequest request) {
+	ResponseEntity<String> logout(@SessionAttribute(name = SessionConstants.LOGIN_USER, required = false) UserDTO loginUser, HttpServletRequest request) {
 		try {
+			if (loginUser==null)
+				return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+			
 			HttpSession session = request.getSession(false);
-			
-			if (session!=null)
-				session.invalidate();	//세션 무효화
-			
+			session.invalidate();
 			return ResponseEntity.ok("로그아웃 성공");
 		} catch(Exception e) {
 			
-			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+			return ResponseEntity.status(500).build();
 		}
 	}
 
