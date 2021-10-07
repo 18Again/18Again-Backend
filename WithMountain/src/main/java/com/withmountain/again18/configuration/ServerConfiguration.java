@@ -12,7 +12,7 @@ import com.withmountain.again18.interceptor.LoginInterceptor;
 @Configuration
 public class ServerConfiguration implements WebMvcConfigurer {
 	
-	private static final List<String> URL_PATTERNS = Arrays.asList("/users/taste", "/logout");
+	private static final List<String> URL_PATTERNS = Arrays.asList("/users/taste");
 	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
