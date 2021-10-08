@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.withmountain.again18.mapper.UserMapper">
+	<sql id="userColumns">
+		id,
+		nickname,
+		email,
+		passwd,
+		gender,
+		age,
+		friendship,
+		climbing_mate,
+		climbing_level,
+		difficulty,
+		exercise,
+		frequency,
+		imoji
+	</sql>
+	
+	<insert id="insertUser" parameterType="com.withmountain.again18.domain.UserDTO">
+		INSERT INTO user_table (
+			<include refid="userColumns" />
+		) VALUES (
+			#{id},
+			#{nickname},
+			#{email},
+			#{passwd},
+			#{gender},
+			#{age},
+			NULL,
+			NULL,
+			NULL,
+			NULL,
+			NULL,
+			NULL,
+			#{imoji}
+		)
+	</insert>
+	
+	<select id="selectUser" parameterType="long" resultType="UserDTO">
+		SELECT <include refid="userColumns" />
+		FROM user_table
+		WHERE id=#{id}
+	</select>
+	
+	<select id="selectUserByEmail" parameterType="String" resultType="UserDTO">
+		SELECT <include refid="userColumns" />
+		FROM user_table
+		WHERE email=#{email} 
+	</select>
+	
+	<select id="getUserCntByNickname" parameterType="String" resultType="int">
+		SELECT COUNT(*)
+		FROM user_table
+		WHERE nickname=#{nickname}
+	</select>
+	
+	<select id="getUserCntByEmail" parameterType="String" resultType="int">
+		SELECT COUNT(*)
+		FROM user_table
+		WHERE email=#{email}
+	</select>
+	
+	<update id="updateUserTaste" parameterType="UserDTO">
+		UPDATE user_table
+		SET friendship=#{friendship},
+			climbing_mate=#{climbingMate},
+			climbing_level=#{climbingLevel},
+			difficulty=#{difficulty},
+			exercise=#{exercise},
+			frequency=#{frequency}
+		WHERE id=#{id}
+	</update>
+</mapper>
