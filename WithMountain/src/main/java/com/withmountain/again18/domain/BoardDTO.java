@@ -1,6 +1,7 @@
 package com.withmountain.again18.domain;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 
 
@@ -14,7 +15,9 @@ public class BoardDTO {
 	private String content;
 	private int gender;
 	
+	private String climbing_date;
 	
+
 	private LocalDateTime insert_time;
 	private LocalDateTime update_time;
 	public int getId() {
@@ -72,11 +75,22 @@ public class BoardDTO {
 		this.update_time = updateTime;
 	}
 	
+	public String getClimbing_date() {
+		return climbing_date;
+	}
+	public void setClimbing_date(String climbing_date) {
+		this.climbing_date = climbing_date;
+		
+	}
 	@Override
 	public String toString() {
-		return "BoardDTO [id=" + id + ", userId=" + userId+ ", title=" + title 
-				 + ",climbing_member"+climbing_member+",connection_link"+connection_link + ", content=" + content +", gender"+gender+
-				 ", insertTime=" + insert_time + ", updateTime=" + update_time + "]";
+		return "BoardDTO [id=" + id + ", userId=" + userId + ", title=" + title + ", climbing_member=" + climbing_member
+				+ ", connection_link=" + connection_link + ", content=" + content + ", gender=" + gender
+				+ ", climbing_date=" + climbing_date + ", insert_time=" + insert_time + ", update_time=" + update_time
+				+ "]";
 	}
+
+	
+	
 	
 }

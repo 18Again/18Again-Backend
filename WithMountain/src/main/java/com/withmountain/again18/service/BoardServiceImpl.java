@@ -1,5 +1,9 @@
-package com.withmoutain.again18.service;
 
+package com.withmountain.again18.service;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.List;
 
@@ -33,7 +37,7 @@ public class BoardServiceImpl implements BoardService {
 	public BoardDTO getBoardDetail(int id) {
 		return boardMapper.selectBoardDetail(id);
 	}
-	
+	*/
 	/*
 	@Override
 	public boolean deleteBoard(Long idx) {
@@ -72,7 +76,13 @@ public class BoardServiceImpl implements BoardService {
 	
 	@Override
 	public void insertBoard(BoardDTO board) throws Exception{
+		//System.out.println(board);
+		//DateTimeFormatter formatter=DateTimeFormatter.ofPattern("yyyy-mm-dd");
+		//LocalDateTime date=LocalDateTime.parse(board.getClimbing_date(),formatter);
+		LocalDate date = LocalDate.parse(board.getClimbing_date(), DateTimeFormatter.ofPattern("yyyyMMdd"));
+		//System.out.println(board);
 		boardMapper.insertBoard(board);
+		
 	}
 	
 	@Override
@@ -92,3 +102,4 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 }
+

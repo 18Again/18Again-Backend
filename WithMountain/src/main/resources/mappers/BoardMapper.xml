@@ -7,6 +7,7 @@
 		, userId
 		, title
 		, climbing_member
+		, climbing_date
 		, connection_link
 		, content
 		, gender
@@ -23,6 +24,7 @@
 			, #{userId}
 			, #{title}
 			, #{climbing_member}
+			, #{climbing_date}
 			, #{connection_link}
 			, #{content}
 			, #{gender}
@@ -31,7 +33,7 @@
 		)
 	</insert>
 	
-	<select id="selectBoardDetail" parameterType="long" resultType="com.withmountain.again18.domain.BoardDTO">
+	<select id="selectBoardDetail" parameterType="int" resultType="com.withmountain.again18.domain.BoardDTO">
 		SELECT
 			<include refid="boardColumns"/>
 		FROM
@@ -48,6 +50,7 @@
 			, userId=#{userId}
 			, title=#{title}
 			, climbing_member=#{climbing_member}
+			, climbing_date=#{climbing_date}
 			, connection_link=#{connection_link}
 			, content=#{content}
 			, gender=#{gender}

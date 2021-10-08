@@ -30,6 +30,7 @@ import com.withmountain.again18.domain.BoardDTO;
 		params.setClimbing_member(3);
 		params.setConnection_link("www.gachon.ac.kr");
 		params.setGender(0);
+		params.setClimbing_date("2021-10-8");
 		
 		
 		int result=boardMapper.insertBoard(params);
@@ -58,6 +59,7 @@ import com.withmountain.again18.domain.BoardDTO;
 			params.setContent(i+"번 게시글 내용");
 			params.setId(i);
 			params.setUserId(i+1);
+			//params.setClimbing_date("2021-10-8");
 			boardMapper.insertBoard(params);
 			System.out.println(">>"+i+"번째 글 작성완료");
 		}
