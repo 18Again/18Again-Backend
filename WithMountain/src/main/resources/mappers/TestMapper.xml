@@ -7,7 +7,7 @@
 		, content
 	</sql>
 	
-	<select id="selectTestList" resultType="TestDTO">
+	<select id="selectTestList" resultType="com.withmountain.again18.domain.TestDTO">
 		SELECT *
 		FROM test
 	</select>
