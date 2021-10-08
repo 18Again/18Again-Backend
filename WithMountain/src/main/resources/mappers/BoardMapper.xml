@@ -6,13 +6,13 @@
 		  id
 		, userId
 		, title
-		, climbing_member
-		, climbing_date
-		, connection_link
+		, member
+		, date
+		, link
 		, content
 		, gender
-		, insert_time
-		, update_time
+		, insertTime
+		, updateTime
 	</sql>
 	
 
@@ -23,9 +23,9 @@
 			  #{id}
 			, #{userId}
 			, #{title}
-			, #{climbing_member}
-			, #{climbing_date}
-			, #{connection_link}
+			, #{member}
+			, #{date}
+			, #{link}
 			, #{content}
 			, #{gender}
 			, NOW()
@@ -45,13 +45,13 @@
 	<update id="updateBoard" parameterType="com.withmountain.again18.domain.BoardDTO">
 		UPDATE board
 		SET
-			  update_time = NOW()
+			  updateTime = NOW()
 			, id=#{id}
 			, userId=#{userId}
 			, title=#{title}
-			, climbing_member=#{climbing_member}
-			, climbing_date=#{climbing_date}
-			, connection_link=#{connection_link}
+			, member=#{member}
+			, date=#{date}
+			, link=#{link}
 			, content=#{content}
 			, gender=#{gender}
 			
@@ -76,7 +76,7 @@
 	
 		ORDER BY
 			id DESC,
-			insert_time DESC
+			insertTime DESC
 	</select>
 	
 	<select id="selectBoardTotalCount" parameterType="com.withmountain.again18.domain.BoardDTO" resultType="int">
