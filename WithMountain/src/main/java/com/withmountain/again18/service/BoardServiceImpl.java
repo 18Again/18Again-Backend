@@ -70,7 +70,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 	*/
 	@Override
-	public List<BoardDTO> selectBoardList() throws Exception{
+	public List<BoardDTO> selectBoardList(){
 		return boardMapper.selectBoardList();
 	}
 	
@@ -79,9 +79,10 @@ public class BoardServiceImpl implements BoardService {
 		//System.out.println(board);
 		//DateTimeFormatter formatter=DateTimeFormatter.ofPattern("yyyy-mm-dd");
 		//LocalDateTime date=LocalDateTime.parse(board.getClimbing_date(),formatter);
-		LocalDate date = LocalDate.parse(board.getClimbing_date(), DateTimeFormatter.ofPattern("yyyyMMdd"));
-		//System.out.println(board);
+		LocalDate date = LocalDate.parse(board.getDate(), DateTimeFormatter.ofPattern("yyyyMMdd"));
+		System.out.println(board);
 		boardMapper.insertBoard(board);
+		
 		
 	}
 	

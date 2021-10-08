@@ -11,8 +11,8 @@ public interface BoardMapper {
 
 	//public int insertBoard(BoardDTO params);
 	//public BoardDTO selectBoardDetail(int id);
-	BoardDTO selectBoardDetail(int boardId) throws Exception;
-	public List<BoardDTO> selectBoardList() throws Exception;
+	BoardDTO selectBoardDetail(int boardId);
+	public List<BoardDTO> selectBoardList();
 	public int selectBoardTotalCount();
 	//public int updateBoard(BoardDTO params);
 	//public int deleteBoard(Long id);
