@@ -1,14 +1,14 @@
 package com.withmountain.again18.domain;
 
 public class LoginReqDTO {
-	private String email;
+	private String userId;
 	private String passwd;
 	
-	public String getEmail() {
-		return email;
+	public String getUserId() {
+		return userId;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 	public String getPasswd() {
 		return passwd;
@@ -19,7 +19,7 @@ public class LoginReqDTO {
 	
 	@Override
 	public String toString() {
-		return "LoginReqDTO [email=" + email + ", passwd=" + passwd + "]";
+		return "LoginReqDTO [userId=" + userId + ", passwd=" + passwd + "]";
 	}
 
 }

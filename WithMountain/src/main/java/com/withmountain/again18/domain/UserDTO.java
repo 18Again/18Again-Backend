@@ -4,7 +4,7 @@ public class UserDTO {
 
 	private Long id;
 	private String nickname;
-	private String email;
+	private String userId;
 	private String passwd;
 	private int gender;
 	private int age;
@@ -28,11 +28,11 @@ public class UserDTO {
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
 	}
-	public String getEmail() {
-		return email;
+	public String getUserId() {
+		return userId;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 	public String getPasswd() {
 		return passwd;
@@ -97,7 +97,7 @@ public class UserDTO {
 	
 	@Override
 	public String toString() {
-		return "UserDTO [id=" + id + ", nickname=" + nickname + ", email=" + email + ", passwd=" + passwd
+		return "UserDTO [id=" + id + ", nickname=" + nickname + ", userId=" + userId + ", passwd=" + passwd
 				+ ", gender=" + gender + ", age=" + age + ", friendship=" + friendship + ", climbingMate="
 				+ climbingMate + ", climbingLevel=" + climbingLevel + ", difficulty=" + difficulty + ", exercise="
 				+ exercise + ", frequency=" + frequency + ", imoji=" + imoji + "]";

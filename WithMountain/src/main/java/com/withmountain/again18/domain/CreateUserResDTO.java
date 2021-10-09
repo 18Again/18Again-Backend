@@ -2,7 +2,7 @@ package com.withmountain.again18.domain;
 
 public class CreateUserResDTO {
 	private Long id;
-	private String email;
+	private String userId;
 	private String nickname;
 	private int gender;
 	private int age;
@@ -16,12 +16,12 @@ public class CreateUserResDTO {
 		this.id = id;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getUserId() {
+		return userId;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
 	public String getNickname() {
@@ -56,9 +56,9 @@ public class CreateUserResDTO {
 		this.imoji = imoji;
 	}
 
-	public CreateUserResDTO(Long id, String email, String nickname, int gender, int age, String imoji) {
+	public CreateUserResDTO(Long id, String userId, String nickname, int gender, int age, String imoji) {
 		this.id = id;
-		this.email = email;
+		this.userId = userId;
 		this.nickname = nickname;
 		this.gender = gender;
 		this.age = age;
@@ -67,7 +67,7 @@ public class CreateUserResDTO {
 
 	@Override
 	public String toString() {
-		return "CreateUserResDTO [id=" + id + ", email=" + email + ", nickname=" + nickname + ", gender=" + gender
+		return "CreateUserResDTO [id=" + id + ", userId=" + userId + ", nickname=" + nickname + ", gender=" + gender
 				+ ", age=" + age + ", imoji=" + imoji + "]";
 	}
 	

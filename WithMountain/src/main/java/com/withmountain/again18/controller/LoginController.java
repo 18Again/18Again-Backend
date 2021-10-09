@@ -25,14 +25,16 @@ public class LoginController {
 	
 	@PostMapping("/login")
 	ResponseEntity<String> login(@RequestBody LoginReqDTO reqBody, HttpServletRequest request) {
+
 		try {
+			
 			UserDTO loginUser = loginService.login(reqBody);
 			
 			if (loginUser!=null) {
 				HttpSession session = request.getSession();	// 세션이 있으면 있는 세션 반환, 없으면 신규 세션을 생성하여 반환
 			    session.setAttribute(SessionConstants.LOGIN_USER, loginUser);	// 세션에 로그인 회원 정보 보관
 			    
-			    return ResponseEntity.ok("로그인 성공");
+			    return ResponseEntity.ok("Login Success!");
 			}
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -49,7 +51,7 @@ public class LoginController {
 			
 			HttpSession session = request.getSession(false);
 			session.invalidate();
-			return ResponseEntity.ok("로그아웃 성공");
+			return ResponseEntity.ok("Logout Success!");
 		} catch(Exception e) {
 			
 			return ResponseEntity.status(500).build();

@@ -19,7 +19,7 @@ public class UserServiceImpl implements UserService {
 		
 		if (params.getId()==null) {	//회원가입
 			user.setNickname(params.getNickname());
-			user.setEmail(params.getEmail());
+			user.setUserId(params.getUserId());
 			user.setPasswd(params.getPasswd());
 			user.setGender(params.getGender());
 			user.setAge(params.getAge());
@@ -43,21 +43,21 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserDTO getUserByEmail(String email) {
-	
-		return userMapper.selectUserByEmail(email);
+	public UserDTO getUserByUserId(String userId) {
+		// TODO Auto-generated method stub
+		return userMapper.selectUserByUserId(userId);
+	}
+
+	@Override
+	public int getUserCntByUserId(String userId) {
+		// TODO Auto-generated method stub
+		return userMapper.getUserCntByUserId(userId);
 	}
 
 	@Override
 	public int getUserCntByNickname(String nickname) {
-		
+		// TODO Auto-generated method stub
 		return userMapper.getUserCntByNickname(nickname);
-	}
-
-	@Override
-	public int getUserCntByEmail(String email) {
-	
-		return userMapper.getUserCntByEmail(email);
 	}
 
 }

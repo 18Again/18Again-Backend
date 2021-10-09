@@ -8,8 +8,8 @@ import com.withmountain.again18.domain.UserDTO;
 public interface UserMapper {
 	int insertUser(UserDTO newUser);
 	UserDTO selectUser(Long id);
-	UserDTO selectUserByEmail(String email);
+	UserDTO selectUserByUserId(String userId);
 	int updateUserTaste(UserDTO user);
 	int getUserCntByNickname(String nickname);
-	int getUserCntByEmail(String email);
+	int getUserCntByUserId(String userId);
 }
