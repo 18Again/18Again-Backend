@@ -10,16 +10,16 @@ public class BoardDTO {
 	private int id;
 	private int userId;
 	private String title;
-	private int climbing_member;
-	private String connection_link;
+	private int member;
+	private String link;
 	private String content;
 	private int gender;
 	
-	private String climbing_date;
+	private String date;
 	
-
-	private LocalDateTime insert_time;
-	private LocalDateTime update_time;
+	private String insertTime;
+	private String updateTime;
+	
 	public int getId() {
 		return id;
 	}
@@ -38,17 +38,17 @@ public class BoardDTO {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public int getClimbing_member() {
-		return climbing_member;
+	public int getMember() {
+		return member;
 	}
-	public void setClimbing_member(int climbing_member) {
-		this.climbing_member = climbing_member;
+	public void setMember(int member) {
+		this.member = member;
 	}
-	public String getConnection_link() {
-		return connection_link;
+	public String getLink() {
+		return link;
 	}
-	public void setConnection_link(String connection_link) {
-		this.connection_link = connection_link;
+	public void setLink(String link) {
+		this.link = link;
 	}
 	public String getContent() {
 		return content;
@@ -62,34 +62,36 @@ public class BoardDTO {
 	public void setGender(int gender) {
 		this.gender = gender;
 	}
-	public LocalDateTime getInsertTime() {
-		return insert_time;
+	public String getDate() {
+		return date;
 	}
-	public void setInsertTime(LocalDateTime insertTime) {
-		this.insert_time = insertTime;
+	public void setDate(String date) {
+		this.date = date;
 	}
-	public LocalDateTime getUpdateTime() {
-		return update_time;
+	public String getInsertTime() {
+		return insertTime;
 	}
-	public void setUpdateTime(LocalDateTime updateTime) {
-		this.update_time = updateTime;
+	public void setInsertTime(String insertTime) {
+		this.insertTime = insertTime;
 	}
-	
-	public String getClimbing_date() {
-		return climbing_date;
+	public String getUpdateTime() {
+		return updateTime;
 	}
-	public void setClimbing_date(String climbing_date) {
-		this.climbing_date = climbing_date;
-		
+	public void setUpdateTime(String updateTime) {
+		this.updateTime = updateTime;
 	}
 	@Override
 	public String toString() {
-		return "BoardDTO [id=" + id + ", userId=" + userId + ", title=" + title + ", climbing_member=" + climbing_member
-				+ ", connection_link=" + connection_link + ", content=" + content + ", gender=" + gender
-				+ ", climbing_date=" + climbing_date + ", insert_time=" + insert_time + ", update_time=" + update_time
-				+ "]";
+		return "BoardDTO [id=" + id + ", userId=" + userId + ", title=" + title + ", member=" + member + ", link="
+				+ link + ", content=" + content + ", gender=" + gender + ", date=" + date + ", insertTime=" + insertTime
+				+ ", updateTime=" + updateTime + "]";
 	}
 
+	//private LocalDateTime insert_time;
+	//private LocalDateTime update_time;
+	
+	
+	
 	
 	
 	

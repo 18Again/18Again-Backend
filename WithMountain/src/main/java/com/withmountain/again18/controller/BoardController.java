@@ -23,7 +23,7 @@ public class BoardController {
 	
 	
 	@RequestMapping(value="/board",method=RequestMethod.GET)
-	public List<BoardDTO> openBoardList() throws Exception{
+	public List<BoardDTO> openBoardList(){
 		return boardService.selectBoardList();
 	}
 	

@@ -10,7 +10,7 @@ public interface BoardService {
 	//public boolean registerBoard(BoardDTO params);
 	//public BoardDTO getBoardDetail(int id);
 	//List<BoardDTO> getBoardList();
-	List<BoardDTO> selectBoardList() throws Exception;
+	List<BoardDTO> selectBoardList() ;
 	void insertBoard(BoardDTO board) throws Exception;
 	BoardDTO selectBoardDetail(int boardId) throws Exception;
 	void updateBoard(BoardDTO board) throws Exception;
