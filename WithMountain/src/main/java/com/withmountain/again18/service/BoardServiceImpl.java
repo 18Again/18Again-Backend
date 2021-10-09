@@ -92,12 +92,29 @@ public class BoardServiceImpl implements BoardService {
 		return board;
 	}
 	
+	/*
+	@Override
+	public void updateBoard(int boardId) throws Exception{
+		boardMapper.updateBoard(boardId);
+	}
+	
+	@Override
+	public void deleteBoard(BoardDTO board) throws Exception{
+		boardMapper.deleteBoard(boardId);
+	}
+	*/
+	@Override
+	public void updateBoardTest(int boardId) throws Exception{
+		boardMapper.updateBoardTest(boardId);
+	}
+	
+	
 	@Override
 	public void updateBoard(BoardDTO board) throws Exception{
 		boardMapper.updateBoard(board);
 	}
 	
-	@Override
+	@Override 
 	public void deleteBoard(int boardId) throws Exception{
 		boardMapper.deleteBoard(boardId);
 	}

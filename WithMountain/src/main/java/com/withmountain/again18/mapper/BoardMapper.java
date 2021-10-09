@@ -17,6 +17,7 @@ public interface BoardMapper {
 	//public int updateBoard(BoardDTO params);
 	//public int deleteBoard(Long id);
 	void insertBoard(BoardDTO board) throws Exception;
-	void updateBoard(BoardDTO board) throws Exception;
+	void updateBoard(BoardDTO board) throws Exception; 
 	void deleteBoard(int boardId) throws Exception;
+	void updateBoardTest(int boardId);
 }

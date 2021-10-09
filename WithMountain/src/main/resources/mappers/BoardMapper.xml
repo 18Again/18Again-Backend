@@ -42,8 +42,9 @@
 			id = #{id}
 	</select>
 	
-	<update id="updateBoard" parameterType="com.withmountain.again18.domain.BoardDTO">
-		UPDATE board
+	<update id="updateBoardTest" parameterType="int">
+	UPDATE
+			 board
 		SET
 			  updateTime = NOW()
 			, id=#{id}
@@ -59,13 +60,32 @@
 		WHERE
 			id = #{id}
 	</update>
+	<update id="updateBoard" parameterType="com.withmountain.again18.domain.BoardDTO">
+		
+		UPDATE
+			 board
+		SET
+			  updateTime = NOW()
+			, title=#{title}
+			, member=#{member}
+			, date=#{date}
+			, link=#{link}
+			, content=#{content}
+			, gender=#{gender}
+			
+			
+		WHERE
+			id = #{id}
+	</update>
 	
-	<update id="deleteBoard" parameterType="Long">
-		UPDATE board
+	<delete id="deleteBoard" parameterType="int">
+		DELETE FROM 
+			board
+		
 		
 		WHERE
 			id=#{id}	
-	</update>
+	</delete>
 	
 	
 	<select id="selectBoardList" parameterType="com.withmountain.again18.domain.BoardDTO" resultType="com.withmountain.again18.domain.BoardDTO">

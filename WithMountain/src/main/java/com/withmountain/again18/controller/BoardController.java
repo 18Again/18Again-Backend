@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,19 +35,26 @@ public class BoardController {
 	}
 	
 	
-	@RequestMapping(value="/board/{boardId}",method=RequestMethod.GET)
+	@RequestMapping(value="/board/{boardId}",method=RequestMethod.POST)
 	public BoardDTO openBoardDetail(@PathVariable("boardId")int boardId) throws Exception{
 		return boardService.selectBoardDetail(boardId);
 		
 	}
 	
-	/*
-	@RequsetMapping(value="/board/{boardId}",method=RequestMethod.PUT)
+	@RequestMapping(value="/board/{boardId}",method=RequestMethod.PUT)
 	public String updateBoard(@RequestBody BoardDTO board) throws Exception{
 		boardService.updateBoard(board);
-		return
+		return "redirect:/board";
 	}
-	*/
+	
+	@RequestMapping(value="/board/{boardId}",method=RequestMethod.DELETE)
+	@DeleteMapping(value="/board/{boardId}")
+	public String deleteBoard(@PathVariable("boardId") int boardId) throws Exception{
+		boardService.deleteBoard(boardId);
+		return "redirect:/board";
+	}
+	
+	
 	
 
 }
