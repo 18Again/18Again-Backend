@@ -4,7 +4,7 @@
 	<sql id="userColumns">
 		id,
 		nickname,
-		email,
+		userId,
 		passwd,
 		gender,
 		age,
@@ -23,7 +23,7 @@
 		) VALUES (
 			#{id},
 			#{nickname},
-			#{email},
+			#{userId},
 			#{passwd},
 			#{gender},
 			#{age},
@@ -43,10 +43,10 @@
 		WHERE id=#{id}
 	</select>
 	
-	<select id="selectUserByEmail" parameterType="String" resultType="UserDTO">
+	<select id="selectUserByUserId" parameterType="String" resultType="UserDTO">
 		SELECT <include refid="userColumns" />
 		FROM user_table
-		WHERE email=#{email} 
+		WHERE userId=#{userId} 
 	</select>
 	
 	<select id="getUserCntByNickname" parameterType="String" resultType="int">
@@ -55,10 +55,10 @@
 		WHERE nickname=#{nickname}
 	</select>
 	
-	<select id="getUserCntByEmail" parameterType="String" resultType="int">
+	<select id="getUserCntByUserId" parameterType="String" resultType="int">
 		SELECT COUNT(*)
 		FROM user_table
-		WHERE email=#{email}
+		WHERE userId=#{userId}
 	</select>
 	
 	<update id="updateUserTaste" parameterType="UserDTO">

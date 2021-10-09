@@ -17,7 +17,7 @@ public class LoginServiceImpl implements LoginService {
 		
 		
 		try {
-			UserDTO user = userMapper.selectUserByEmail(loginReq.getEmail());
+			UserDTO user = userMapper.selectUserByUserId(loginReq.getUserId());
 			
 			if (user!=null&&loginReq.getPasswd().equals(user.getPasswd())) {
 				return user;

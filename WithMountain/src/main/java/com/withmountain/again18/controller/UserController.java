@@ -28,7 +28,7 @@ public class UserController {
 	private UserService userService;
 	
 	@GetMapping()
-	ResponseEntity<UserDTO> getUserByEamil(HttpServletRequest req, @RequestParam(value="email", required=false) String email) {
+	ResponseEntity<UserDTO> getUserByEamil(HttpServletRequest req, @RequestParam(value="userId", required=false) String userId) {
 		UserDTO user = null;
 		
 		HttpSession session = req.getSession();
@@ -36,7 +36,7 @@ public class UserController {
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
 		
 		try {
-			user = userService.getUserByEmail(email);
+			user = userService.getUserByUserId(userId);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -45,15 +45,15 @@ public class UserController {
 	}
 	
 	@GetMapping(value="/double")
-	ResponseEntity<String> checkDoubleUser(@RequestParam(value="nickname", required=false) String nickname, @RequestParam(value="email", required=false) String email) {
-		if (nickname==null&&email==null)
+	ResponseEntity<String> checkDoubleUser(@RequestParam(value="nickname", required=false) String nickname, @RequestParam(value="userId", required=false) String userId) {
+		if (nickname==null&&userId==null)
 			return ResponseEntity.badRequest().build();
 		
 		int cnt = 0;
 		
 		try {
 			if (nickname==null) {
-				cnt = userService.getUserCntByEmail(email);
+				cnt = userService.getUserCntByUserId(userId);
 			} else {
 				cnt = userService.getUserCntByNickname(nickname);
 			}
@@ -71,9 +71,9 @@ public class UserController {
 			boolean result = userService.registerUser(newUser);
 			
 			if (result) {
-				newUser = userService.getUserByEmail(newUser.getEmail());
+				newUser = userService.getUserByUserId(newUser.getUserId());
 				CreateUserResDTO resBody = new CreateUserResDTO(newUser.getId(), 
-																newUser.getEmail(), 
+																newUser.getUserId(), 
 																newUser.getNickname(), 
 																newUser.getGender(), 
 																newUser.getAge(), 

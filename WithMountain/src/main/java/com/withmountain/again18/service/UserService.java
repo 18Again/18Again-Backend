@@ -4,7 +4,7 @@ import com.withmountain.again18.domain.UserDTO;
 
 public interface UserService {
 	boolean registerUser(UserDTO newUser);
-	UserDTO getUserByEmail(String email);
+	UserDTO getUserByUserId(String userId);
 	int getUserCntByNickname(String nickname);
-	int getUserCntByEmail(String email);
+	int getUserCntByUserId(String userId);
 }
