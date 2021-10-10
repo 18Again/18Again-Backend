@@ -103,15 +103,13 @@ public class BoardServiceImpl implements BoardService {
 		boardMapper.deleteBoard(boardId);
 	}
 	*/
-	@Override
-	public void updateBoardTest(int boardId) throws Exception{
-		boardMapper.updateBoardTest(boardId);
-	}
 	
 	
 	@Override
 	public void updateBoard(BoardDTO board) throws Exception{
-		boardMapper.updateBoard(board);
+		//boardMapper.updateBoard(board);
+		System.out.println(boardMapper.updateBoard(board));
+		System.out.println(board.toString());
 	}
 	
 	@Override 

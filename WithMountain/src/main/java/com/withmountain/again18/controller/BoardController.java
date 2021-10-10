@@ -41,8 +41,10 @@ public class BoardController {
 		
 	}
 	
-	@RequestMapping(value="/board/{boardId}",method=RequestMethod.PUT)
-	public String updateBoard(@RequestBody BoardDTO board) throws Exception{
+	@RequestMapping(value="/board/update/{boardId}",method=RequestMethod.PUT)
+	public String updateBoard(@RequestBody BoardDTO board,@PathVariable("boardId") int boardId) throws Exception{
+		//System.out.println(board.toString());
+		board.setId(boardId);
 		boardService.updateBoard(board);
 		return "redirect:/board";
 	}
