@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.withmountain.again18.mapper.DistanceMapper">
+	<sql id="distanceColumns">
+		id,
+		userId1, 
+		userId2, 
+		distance
+	</sql>
+	
+	<select id="getDistanceListByUserId" parameterType="int" resultType="DistanceDTO">
+		SELECT *
+		FROM distance
+		WHERE userId1=#{userId} OR userId2=#{userId}; 
+	</select>
+	
+	<insert id="insertDistance" parameterType="DistanceDTO">
+		INSERT INTO distance(userId1, userId2, distance) VALUES(#{userId1}, #{userId2}, #{distance});
+	</insert>
+
+</mapper>
