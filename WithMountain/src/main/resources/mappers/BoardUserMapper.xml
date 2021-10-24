@@ -22,7 +22,7 @@
 		<result property="imoji" column="imoji"/>
 		<result property="friendship" column="friendship"/>
 		<result property="climbingMate" column="climbing_mate"/>
-		<result property="climbingLevel" column="cclimbing_level"/>
+		<result property="climbingLevel" column="climbing_level"/>
 		<result property="difficulty" column="difficulty" />
 		<result property="exercise" column="exercise"/>
 		<result property="frequency" column="frequency"/>
@@ -38,7 +38,7 @@
 		FROM board AS b
 		JOIN user_table AS u
 		ON b.userId = u.id
-		WHERE b.date>=NOW() AND u.userId NOT IN (#{userId})
+		WHERE b.date>=NOW() AND u.id NOT IN (#{userId})
 		ORDER BY b.date;
 	</select>
 </mapper>

@@ -16,8 +16,16 @@ public class BoardUserMapperTest {
 
 	@Test
 	void testOfSelectBoardJoinUser() {
-		List<BoardUserDTO> results = mapper.selectBoardJoinUser(1);
+		try {
+			List<BoardUserDTO> results = mapper.selectBoardJoinUser(1);
+			
+			for (BoardUserDTO result:results) {
+				System.out.println(result.toString());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
-		System.out.println(results.get(0).toString());
+		
 	}
 }

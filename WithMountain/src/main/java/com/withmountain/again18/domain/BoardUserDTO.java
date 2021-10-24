@@ -1,5 +1,7 @@
 package com.withmountain.again18.domain;
 
+import java.time.LocalDateTime;
+
 public class BoardUserDTO {
 	
 	private UserDTO user;
@@ -24,9 +26,12 @@ public class BoardUserDTO {
 	public void setDistance(double distance) {
 		this.distance = distance;
 	}
+	public String getDate() {
+		return board.getDate();
+	}
 	
 	@Override
 	public String toString() {
-		return "BoardUserDTO [user=" + user + ", board=" + board + ", distance=" + distance + "]";
+		return "BoardUserDTO [user=" + user + ",\n board=" + board + ",\n distance=" + distance + "]\n";
 	}
 }

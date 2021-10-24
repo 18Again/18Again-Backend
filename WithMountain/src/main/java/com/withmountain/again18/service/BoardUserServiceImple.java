@@ -75,7 +75,12 @@ public class BoardUserServiceImple extends DistanceCalculation implements BoardU
 				}
 		
 				if (boardUsers.stream().filter(t->t.getDistance()==-1.0).toList().size()==0) {
-					return boardUsers.stream().sorted(Comparator.comparing(BoardUserDTO::getDistance)).collect(Collectors.toList());
+					
+//					Comparator<CustomData> compare = Comparator .comparing(CustomData::getDateTime) .thenComparing(CustomData::getSequenceNumber); 
+//					List<CustomData> sortedList = list.stream() .sorted(compare) .collect(Collectors.toList());
+
+					Comparator<BoardUserDTO> compare = Comparator.comparing(BoardUserDTO::getDistance).thenComparing(BoardUserDTO::getDate);
+					return boardUsers.stream().sorted(compare).collect(Collectors.toList());
 				}
 					
 			}
