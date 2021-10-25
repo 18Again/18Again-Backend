@@ -41,4 +41,22 @@
 		WHERE b.date>=NOW() AND u.id NOT IN (#{userId})
 		ORDER BY b.date;
 	</select>
+	
+	<select id="selectBoardListByUser" resultMap="boardUserMap" parameterType="String">
+		SELECT b.id AS board_id, b.title, b.member, b.date, b.updateTime, b.gender, u.nickname, u.imoji
+		FROM board AS b 
+			JOIN user_table AS u
+			ON b.userId = u.id
+		WHERE u.userId = #{userId}
+		ORDER BY b.updateTime;
+	</select>
+	
+	<select id="selectBoardList" resultMap="boardUserMap" parameterType="long">
+		SELECT b.id AS board_id, b.title, b.member, b.date, b.updateTime, b.gender, u.nickname, u.imoji
+		FROM board AS b 
+			JOIN user_table AS u
+			ON b.userId = u.id
+		WHERE b.date>=NOW() AND u.id NOT IN (#{userId})
+		ORDER BY b.updateTime;
+	</select>
 </mapper>

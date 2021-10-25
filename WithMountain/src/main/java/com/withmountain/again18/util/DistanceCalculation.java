@@ -39,7 +39,7 @@ public class DistanceCalculation {
 			double climbingLevel = Math.sqrt(Math.pow(master.get("climbingLevel")-other.get("climbingLevel"), 2));	//등산수준
 			double frequency = Math.sqrt(Math.pow(master.get("frequency")-other.get("frequency"), 2));	//등산빈도
 			
-			distance = exercise*0.35 + difficulty*0.25 + climbingLevel*0.15 + frequency*0.15;
+			distance = exercise*0.42 + difficulty*0.3 + climbingLevel*0.15 + frequency*0.08;
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

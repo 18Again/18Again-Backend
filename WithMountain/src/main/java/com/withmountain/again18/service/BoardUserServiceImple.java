@@ -26,7 +26,7 @@ public class BoardUserServiceImple extends DistanceCalculation implements BoardU
 	private DistanceMapper distanceMapper;
 
 	@Override
-	public List<BoardUserDTO> getBoardUserList(UserDTO user) {
+	public List<BoardUserDTO> getRecommendBoardList(UserDTO user) {
 		
 		List<BoardUserDTO> boardUsers = boardUserMapper.selectBoardJoinUser(user.getId().intValue());
 //		List<DistanceDTO> distances = distanceMapper.getDistanceListByUserId(user.getId().intValue());
@@ -86,6 +86,18 @@ public class BoardUserServiceImple extends DistanceCalculation implements BoardU
 			}
 		}
 		
+	}
+
+	@Override
+	public List<BoardUserDTO> getBoardsByUser(String userId) {
+		
+		return boardUserMapper.selectBoardListByUser(userId);
+	}
+
+	@Override
+	public List<BoardUserDTO> getBoardList(long id) {
+		
+		return boardUserMapper.selectBoardList(id);
 	}
 
 }

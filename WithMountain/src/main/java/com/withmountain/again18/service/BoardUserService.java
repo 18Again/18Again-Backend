@@ -7,6 +7,8 @@ import com.withmountain.again18.domain.UserDTO;
 
 public interface BoardUserService {
 	
-	List<BoardUserDTO> getBoardUserList(UserDTO user);
+	List<BoardUserDTO> getRecommendBoardList(UserDTO user);
+	List<BoardUserDTO> getBoardsByUser(String userId);
+	List<BoardUserDTO> getBoardList(long id);
 
 }

@@ -31,8 +31,12 @@ public class UserController {
 	ResponseEntity<UserDTO> getUserByEamil(HttpServletRequest req, @RequestParam(value="userId", required=false) String userId) {
 		UserDTO user = null;
 		
+//		HttpSession session = req.getSession();
+//		if (session.getAttribute(SessionConstants.LOGIN_USER)==null)
+//			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+		
 		HttpSession session = req.getSession();
-		if (session.getAttribute(SessionConstants.LOGIN_USER)==null)
+		if (session==null)
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
 		
 		try {
