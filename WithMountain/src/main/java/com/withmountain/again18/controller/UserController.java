@@ -35,9 +35,10 @@ public class UserController {
 //		if (session.getAttribute(SessionConstants.LOGIN_USER)==null)
 //			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
 		
-		HttpSession session = req.getSession();
-		if (session==null)
-			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+		/*
+		 * HttpSession session = req.getSession(); if (session==null) return
+		 * ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+		 */
 		
 		try {
 			user = userService.getUserByUserId(userId);
