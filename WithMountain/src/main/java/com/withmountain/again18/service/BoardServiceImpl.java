@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.withmountain.again18.domain.BoardDTO;
+import com.withmountain.again18.domain.BoardDetailDTO;
 import com.withmountain.again18.mapper.BoardMapper;
 
 @Service
@@ -87,12 +88,17 @@ public class BoardServiceImpl implements BoardService {
 	}
 	
 	@Override
+	public List<BoardDetailDTO> selectBoardDetail(int boardId){
+		return boardMapper.selectBoardDetail(boardId);
+	}
+	/*
+	@Override
 	public BoardDTO selectBoardDetail(int boardId) throws Exception{
 		BoardDTO board=boardMapper.selectBoardDetail(boardId);
 		return board;
 	}
 	
-	/*
+	
 	@Override
 	public void updateBoard(int boardId) throws Exception{
 		boardMapper.updateBoard(boardId);

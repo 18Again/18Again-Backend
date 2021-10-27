@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.withmountain.again18.domain.BoardDTO;
+import com.withmountain.again18.domain.BoardDetailDTO;
 import com.withmountain.again18.service.BoardService;
 
 
@@ -30,16 +31,21 @@ public class BoardController {
 	
 	
 	@RequestMapping(value="/board/write",method=RequestMethod.POST)
-	public void insertBoard(@RequestBody BoardDTO board) throws Exception{
+	public int insertBoard(@RequestBody BoardDTO board) throws Exception{
 		boardService.insertBoard(board);
+		int userId;
+		userId=board.getId();
+		return userId;
 	}
 	
 	
 	@RequestMapping(value="/board/{boardId}",method=RequestMethod.POST)
-	public BoardDTO openBoardDetail(@PathVariable("boardId")int boardId) throws Exception{
+	public List<BoardDetailDTO> openBoardDetail(@PathVariable("boardId")int boardId) throws Exception{
+		System.out.println(boardService.selectBoardDetail(boardId));
 		return boardService.selectBoardDetail(boardId);
 		
 	}
+	
 	
 	@RequestMapping(value="/board/update/{boardId}",method=RequestMethod.PUT)
 	public String updateBoard(@RequestBody BoardDTO board,@PathVariable("boardId") int boardId) throws Exception{
