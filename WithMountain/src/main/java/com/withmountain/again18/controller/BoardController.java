@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -52,6 +53,21 @@ public class BoardController {
 	public BoardDTO openBoardDetail(@PathVariable("boardId")int boardId) throws Exception{
 		return boardService.selectBoardDetail(boardId);
 		
+	}
+	
+	@RequestMapping(value="/board/update/{boardId}",method=RequestMethod.PUT)
+	public String updateBoard(@RequestBody BoardDTO board,@PathVariable("boardId") int boardId) throws Exception{
+		//System.out.println(board.toString());
+		board.setId(boardId);
+		boardService.updateBoard(board);
+		return "redirect:/board";
+	}
+	
+	@RequestMapping(value="/board/{boardId}",method=RequestMethod.DELETE)
+	@DeleteMapping(value="/board/{boardId}")
+	public String deleteBoard(@PathVariable("boardId") int boardId) throws Exception{
+		boardService.deleteBoard(boardId);
+		return "redirect:/board";
 	}
 	
 	@GetMapping(value="/board/recommend")

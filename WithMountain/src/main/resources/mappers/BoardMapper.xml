@@ -67,12 +67,12 @@
 			id = #{id}
 	</update>
 	
-	<update id="deleteBoard" parameterType="Long">
-		UPDATE board
+	<delete id="deleteBoard" parameterType="int">
+		DELETE FROM board
 		
 		WHERE
 			id=#{id}	
-	</update>
+	</delete>
 	
 	
 	<select id="selectBoardList" parameterType="com.withmountain.again18.domain.BoardDTO" resultType="com.withmountain.again18.domain.BoardDTO">
