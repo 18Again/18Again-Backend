@@ -1,4 +1,3 @@
-
 package com.withmountain.again18.service;
 
 import java.time.LocalDate;
@@ -11,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.withmountain.again18.domain.BoardDTO;
+import com.withmountain.again18.domain.BoardDetailDTO;
 import com.withmountain.again18.mapper.BoardMapper;
 
 @Service
@@ -79,28 +79,34 @@ public class BoardServiceImpl implements BoardService {
 		//System.out.println(board);
 		//DateTimeFormatter formatter=DateTimeFormatter.ofPattern("yyyy-mm-dd");
 		//LocalDateTime date=LocalDateTime.parse(board.getClimbing_date(),formatter);
-		LocalDate date = LocalDate.parse(board.getDate(), DateTimeFormatter.ofPattern("yyyyMMdd"));
+		LocalDate.parse(board.getDate(), DateTimeFormatter.ofPattern("yyyyMMdd"));
 		System.out.println(board);
 		boardMapper.insertBoard(board);
 		
 		
 	}
 	
+	
 	@Override
-	public BoardDTO selectBoardDetail(int boardId) throws Exception{
-		BoardDTO board=boardMapper.selectBoardDetail(boardId);
-		return board;
+	public List<BoardDetailDTO> selectBoardDetail(int boardId){
+		return boardMapper.selectBoardDetail(boardId);
 	}
 	
 	@Override
 	public void updateBoard(BoardDTO board) throws Exception{
 		boardMapper.updateBoard(board);
+
+		
 	}
 	
 	@Override
 	public void deleteBoard(int boardId) throws Exception{
 		boardMapper.deleteBoard(boardId);
 	}
+	
+	@Override
+	public int insertBoardReturnId() {
+		return boardMapper.insertBoardReturnId();
+	}
 
 }
-

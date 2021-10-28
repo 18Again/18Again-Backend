@@ -1,4 +1,3 @@
-
 package com.withmountain.again18.controller;
 
 import java.util.ArrayList;
@@ -20,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.withmountain.again18.domain.BoardDTO;
+import com.withmountain.again18.domain.BoardDetailDTO;
 import com.withmountain.again18.domain.BoardUserDTO;
 import com.withmountain.again18.domain.BoardListResDTO;
 import com.withmountain.again18.domain.UserDTO;
@@ -43,31 +43,26 @@ public class BoardController {
 	 */
 	
 	
+	
 	@RequestMapping(value="/board/write",method=RequestMethod.POST)
-	public void insertBoard(@RequestBody BoardDTO board) throws Exception{
-		boardService.insertBoard(board);
+	public ResponseEntity<Integer> insertBoard(@SessionAttribute(name = SessionConstants.LOGIN_USER, required = false) UserDTO loginUser, @RequestBody BoardDTO board) throws Exception{
+		if (loginUser==null) {
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+		} else {
+			board.setUserId(loginUser.getId().intValue());
+			boardService.insertBoard(board);
+			int userId=boardService.insertBoardReturnId();
+			return ResponseEntity.ok(userId);
+		}
+		
 	}
 	
 	
 	@RequestMapping(value="/board/{boardId}",method=RequestMethod.GET)
-	public BoardDTO openBoardDetail(@PathVariable("boardId")int boardId) throws Exception{
+	public List<BoardDetailDTO> openBoardDetail(@PathVariable("boardId")int boardId) throws Exception{
+		System.out.println(boardService.selectBoardDetail(boardId));
 		return boardService.selectBoardDetail(boardId);
 		
-	}
-	
-	@RequestMapping(value="/board/update/{boardId}",method=RequestMethod.PUT)
-	public String updateBoard(@RequestBody BoardDTO board,@PathVariable("boardId") int boardId) throws Exception{
-		//System.out.println(board.toString());
-		board.setId(boardId);
-		boardService.updateBoard(board);
-		return "redirect:/board";
-	}
-	
-	@RequestMapping(value="/board/{boardId}",method=RequestMethod.DELETE)
-	@DeleteMapping(value="/board/{boardId}")
-	public String deleteBoard(@PathVariable("boardId") int boardId) throws Exception{
-		boardService.deleteBoard(boardId);
-		return "redirect:/board";
 	}
 	
 	@GetMapping(value="/board/recommend")
@@ -102,6 +97,27 @@ public class BoardController {
 		return
 	}
 	*/
+	
+	@RequestMapping(value="/board/update/{boardId}",method=RequestMethod.PUT)
+	public ResponseEntity<String> updateBoard(@SessionAttribute(name = SessionConstants.LOGIN_USER, required = false) UserDTO loginUser, @RequestBody BoardDTO board,@PathVariable("boardId") int boardId) throws Exception{
+		//System.out.println(board.toString());
+		if (loginUser==null) {
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+		} else {
+			board.setUserId(loginUser.getId().intValue());
+			board.setId(boardId);
+			boardService.updateBoard(board);
+			return ResponseEntity.ok("redirect:/board");	
+		}
+		
+	}
+	
+	@RequestMapping(value="/board/{boardId}",method=RequestMethod.DELETE)
+	@DeleteMapping(value="/board/{boardId}")
+	public String deleteBoard(@PathVariable("boardId") int boardId) throws Exception{
+		boardService.deleteBoard(boardId);
+		return "redirect:/board";
+	}
 	
 	private List<BoardListResDTO> bindBoardListRes(List<BoardUserDTO> boardUsers) {
 		List<BoardListResDTO> recommendBoards = new ArrayList<BoardListResDTO>();
