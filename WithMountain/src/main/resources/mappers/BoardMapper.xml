@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.withmountain.again18.mapper.BoardMapper">
+
+	<resultMap type="com.withmountain.again18.domain.BoardPartDetailDTO" id="boardRM">
+		<id property="id" column="board_id"/>
+		<result property="title" column="title"/>
+		<result property="member" column="member"/>
+		<result property="date" column="date"/>
+		<result property="link" column="link"/>
+		<result property="content" column="content"/>
+		<result property="gender" column="gender" />
+	</resultMap>
+	
+	<resultMap type="com.withmountain.again18.domain.UserDetailDTO" id="userRM">
+		<id property="id" column="user_id"/>
+		<result property="nickname" column="nickname"/>
+		<result property="gender" column="gender"/>
+		<result property="age" column="age"/>
+		<result property="imoji" column="imoji"/>
+		<result property="friendship" column="friendship"/>
+		<result property="climbingMate" column="climbing_mate"/>
+		<result property="climbingLevel" column="climbing_level"/>
+		
+	</resultMap>
+	
+	<resultMap type="com.withmountain.again18.domain.BoardDetailDTO" id="boardUserMap">
+		<collection property="board" resultMap="boardRM" />
+		<collection property="user" resultMap="userRM" />
+	</resultMap>
+	
+	
+	<select id="selectBoardDetail" resultMap="boardUserMap" parameterType="int">
+		SELECT 
+			b.id AS board_id, b.title, b.member, b.date, b.gender, b.content,u.nickname,b.link, u.imoji, u.climbing_level, u.friendship, u.climbing_mate, u.gender, u.age
+		FROM 
+			board AS b 
+			JOIN user_table AS u
+			ON b.userId = u.id
+		WHERE
+			b.id = #{id}
+	</select>
+	
+	
+	<sql id="boardColumns">
+		  id
+		, userId
+		, title
+		, member
+		, date
+		, link
+		, content
+		, gender
+		, insertTime
+		, updateTime
+	</sql>
+	
+
+		<insert id="insertBoard" parameterType="com.withmountain.again18.domain.BoardDTO">
+		INSERT INTO board(
+			<include refid="boardColumns"/>
+		) VALUES (
+			  #{id}
+			, #{userId}
+			, #{title}
+			, #{member}
+			, #{date}
+			, #{link}
+			, #{content}
+			, #{gender}
+			, NOW()
+			, NOW()		
+		)
+		
+	</insert>
+	
+	<select id="insertBoardReturnId" resultType="int">
+		
+			SELECT
+				*
+			FROM
+				board
+			ORDER BY
+				id desc limit 1
+	</select>
+	
+	
+	<!-- <select id="selectBoardListOrderByDate" parameterType="int" resultType="BoardDTO">
+		SELECT * 
+		FROM board
+		WHERE date>=NOW() AND userId NOT IN (#{userId})
+		ORDER BY date;
+	</select> -->
+	
+	<update id="updateBoard" parameterType="com.withmountain.again18.domain.BoardDTO">
+		UPDATE board
+		SET
+			  updateTime = NOW()
+			, id=#{id}
+			, userId=#{userId}
+			, title=#{title}
+			, member=#{member}
+			, date=#{date}
+			, link=#{link}
+			, content=#{content}
+			, gender=#{gender}
+			
+			
+		WHERE
+			id = #{id}
+	</update>
+	
+	
+	<select id="selectBoardList" parameterType="com.withmountain.again18.domain.BoardDTO" resultType="com.withmountain.again18.domain.BoardDTO">
+		SELECT
+			<include refid="boardColumns"/>
+		FROM
+			board
+	
+		ORDER BY
+			id DESC,
+			insertTime DESC
+	</select>
+	
+	<select id="selectBoardTotalCount" parameterType="com.withmountain.again18.domain.BoardDTO" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			board
+		
+	</select>
+	
+		
+	<delete id="deleteBoard" parameterType="int">
+		DELETE FROM 
+			board
+		
+		WHERE
+			id=#{id}	
+	</delete>
+	
+
+</mapper>

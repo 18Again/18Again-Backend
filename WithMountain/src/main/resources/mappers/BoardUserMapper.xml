@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.withmountain.again18.mapper.BoardUserMapper">
+
+	<resultMap type="BoardDTO" id="boardRM">
+		<id property="id" column="board_id"/>
+		<result property="title" column="title"/>
+		<result property="member" column="member"/>
+		<result property="date" column="date"/>
+		<result property="link" column="link"/>
+		<result property="insertTime" column="insertTime"/>
+		<result property="updateTime" column="updateTime"/>
+		<result property="content" column="content"/>
+		<result property="gender" column="gender" />
+	</resultMap>
+	
+	<resultMap type="UserDTO" id="userRM">
+		<id property="id" column="user_id"/>
+		<result property="nickname" column="nickname"/>
+		<result property="gender" column="gender"/>
+		<result property="age" column="age"/>
+		<result property="imoji" column="imoji"/>
+		<result property="friendship" column="friendship"/>
+		<result property="climbingMate" column="climbing_mate"/>
+		<result property="climbingLevel" column="climbing_level"/>
+		<result property="difficulty" column="difficulty" />
+		<result property="exercise" column="exercise"/>
+		<result property="frequency" column="frequency"/>
+	</resultMap>
+	
+	<resultMap type="BoardUserDTO" id="boardUserMap">
+		<collection property="board" resultMap="boardRM" />
+		<collection property="user" resultMap="userRM" />
+	</resultMap>
+	
+	<select id="selectBoardJoinUser" parameterType="int" resultMap="boardUserMap">
+		SELECT b.id AS board_id, b.title, b.member, b.date, b.link, b.insertTime, b.updateTime, b.content, b.gender, u.id AS user_id, u.nickname, u.gender, u.age, u.imoji, u.friendship, u.climbing_mate, u.climbing_level, u.difficulty, u.exercise, u.frequency
+		FROM board AS b
+		JOIN user_table AS u
+		ON b.userId = u.id
+		WHERE b.date>=NOW() AND u.id NOT IN (#{userId})
+		ORDER BY b.date;
+	</select>
+	
+	<select id="selectBoardListByUser" resultMap="boardUserMap" parameterType="String">
+		SELECT b.id AS board_id, b.title, b.member, b.date, b.updateTime, b.gender, u.nickname, u.imoji
+		FROM board AS b 
+			JOIN user_table AS u
+			ON b.userId = u.id
+		WHERE u.userId = #{userId}
+		ORDER BY b.updateTime;
+	</select>
+	
+	<select id="selectBoardList" resultMap="boardUserMap" parameterType="long">
+		SELECT b.id AS board_id, b.title, b.member, b.date, b.updateTime, b.gender, u.nickname, u.imoji
+		FROM board AS b 
+			JOIN user_table AS u
+			ON b.userId = u.id
+		WHERE b.date>=NOW() AND u.id NOT IN (#{userId})
+		ORDER BY b.updateTime;
+	</select>
+</mapper>
