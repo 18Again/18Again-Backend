@@ -13,13 +13,10 @@ public class BoardDTO {
 	private int member;
 	private String link;
 	private String content;
-	private int gender;
-	
+	private int boardGender;
 	private String date;
-	
 	private String insertTime;
 	private String updateTime;
-	
 	public int getId() {
 		return id;
 	}
@@ -56,11 +53,11 @@ public class BoardDTO {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public int getGender() {
-		return gender;
+	public int getBoardGender() {
+		return boardGender;
 	}
-	public void setGender(int gender) {
-		this.gender = gender;
+	public void setBoardGender(int boardGender) {
+		this.boardGender = boardGender;
 	}
 	public String getDate() {
 		return date;
@@ -83,12 +80,13 @@ public class BoardDTO {
 	@Override
 	public String toString() {
 		return "BoardDTO [id=" + id + ", userId=" + userId + ", title=" + title + ", member=" + member + ", link="
-				+ link + ", content=" + content + ", gender=" + gender + ", date=" + date + ", insertTime=" + insertTime
-				+ ", updateTime=" + updateTime + "]";
+				+ link + ", content=" + content + ", boardGender=" + boardGender + ", date=" + date + ", insertTime="
+				+ insertTime + ", updateTime=" + updateTime + "]";
 	}
-
-	//private LocalDateTime insert_time;
-	//private LocalDateTime update_time;
+	
+	
+	
+	
 	
 	
 	
