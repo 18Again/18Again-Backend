@@ -75,7 +75,18 @@
 			, NOW()
 			, NOW()		
 		)
+		
 	</insert>
+	
+	<select id="insertBoardReturnId" resultType="int">
+		
+			SELECT
+				*
+			FROM
+				board
+			ORDER BY
+				id desc limit 1
+	</select>
 	
 	
 	

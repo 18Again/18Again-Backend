@@ -122,6 +122,11 @@ public class BoardServiceImpl implements BoardService {
 	public void deleteBoard(int boardId) throws Exception{
 		boardMapper.deleteBoard(boardId);
 	}
+	
+	@Override
+	public int insertBoardReturnId() {
+		return boardMapper.insertBoardReturnId();
+	}
 
 }
 

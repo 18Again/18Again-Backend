@@ -17,6 +17,6 @@ public interface BoardService {
 	void updateBoard(BoardDTO board) throws Exception;
 	void deleteBoard(int boardId) throws Exception;
 	List<BoardDetailDTO> selectBoardDetail(int boardId);
-	
+	int insertBoardReturnId();
 	//void updateBoardTest(int boardId) throws Exception;
 }

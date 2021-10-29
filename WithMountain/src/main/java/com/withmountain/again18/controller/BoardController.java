@@ -34,7 +34,7 @@ public class BoardController {
 	public int insertBoard(@RequestBody BoardDTO board) throws Exception{
 		boardService.insertBoard(board);
 		int userId;
-		userId=board.getId();
+		userId=boardService.insertBoardReturnId();
 		return userId;
 	}
 	
