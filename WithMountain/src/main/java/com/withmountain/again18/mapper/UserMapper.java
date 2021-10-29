@@ -12,4 +12,5 @@ public interface UserMapper {
 	int updateUserTaste(UserDTO user);
 	int getUserCntByNickname(String nickname);
 	int getUserCntByUserId(String userId);
+	int deleteUser(Long id);
 }

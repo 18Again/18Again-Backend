@@ -124,7 +124,7 @@ public class BoardController {
 		
 		for (BoardUserDTO boardUser: boardUsers) {
 			System.out.println(boardUser.toString());
-			BoardListResDTO recommendBoard = new BoardListResDTO(boardUser.getBoard().getId(), boardUser.getUser().getNickname(), boardUser.getUser().getImoji(), boardUser.getBoard().getTitle(), boardUser.getBoard().getDate(), boardUser.getBoard().getUpdateTime(), boardUser.getBoard().getMember(), boardUser.getBoard().getGender());
+			BoardListResDTO recommendBoard = new BoardListResDTO(boardUser.getBoard().getId(), boardUser.getUser().getNickname(), boardUser.getUser().getImoji(), boardUser.getBoard().getTitle(), boardUser.getBoard().getDate(), boardUser.getBoard().getUpdateTime(), boardUser.getBoard().getMember(), boardUser.getBoard().getBoardGender());
 			recommendBoards.add(recommendBoard);
 		}
 		

@@ -60,4 +60,10 @@ public class UserServiceImpl implements UserService {
 		return userMapper.getUserCntByNickname(nickname);
 	}
 
+	@Override
+	public int deleteUser(Long id) {
+		// TODO Auto-generated method stub
+		return userMapper.deleteUser(id);
+	}
+
 }

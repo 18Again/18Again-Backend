@@ -71,4 +71,10 @@
 			frequency=#{frequency}
 		WHERE id=#{id}
 	</update>
+	
+	<delete id="deleteUser" parameterType="long">
+		DELETE 
+		FROM user_table
+		WHERE id=#{id}
+	</delete>
 </mapper>

@@ -7,4 +7,5 @@ public interface UserService {
 	UserDTO getUserByUserId(String userId);
 	int getUserCntByNickname(String nickname);
 	int getUserCntByUserId(String userId);
+	int deleteUser(Long id);
 }

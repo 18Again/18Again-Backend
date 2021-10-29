@@ -9,7 +9,7 @@
 		<result property="date" column="date"/>
 		<result property="link" column="link"/>
 		<result property="content" column="content"/>
-		<result property="gender" column="gender" />
+		<result property="gender" column="boardGender"/>
 	</resultMap>
 	
 	<resultMap type="com.withmountain.again18.domain.UserDetailDTO" id="userRM">
@@ -32,7 +32,7 @@
 	
 	<select id="selectBoardDetail" resultMap="boardUserMap" parameterType="int">
 		SELECT 
-			b.id AS board_id, b.title, b.member, b.date, b.gender, b.content,u.nickname,b.link, u.imoji, u.climbing_level, u.friendship, u.climbing_mate, u.gender, u.age
+			b.id AS board_id, b.title, b.member, b.date, b.boardGender, b.content,u.nickname,b.link, u.imoji, u.climbing_level, u.friendship, u.climbing_mate, u.gender, u.age
 		FROM 
 			board AS b 
 			JOIN user_table AS u
@@ -50,13 +50,13 @@
 		, date
 		, link
 		, content
-		, gender
+		, boardGender
 		, insertTime
 		, updateTime
 	</sql>
 	
 
-		<insert id="insertBoard" parameterType="com.withmountain.again18.domain.BoardDTO">
+	<insert id="insertBoard" parameterType="com.withmountain.again18.domain.BoardDTO">
 		INSERT INTO board(
 			<include refid="boardColumns"/>
 		) VALUES (
@@ -67,12 +67,12 @@
 			, #{date}
 			, #{link}
 			, #{content}
-			, #{gender}
+			, #{boardGender}
 			, NOW()
 			, NOW()		
 		)
-		
 	</insert>
+	
 	
 	<select id="insertBoardReturnId" resultType="int">
 		
@@ -103,7 +103,7 @@
 			, date=#{date}
 			, link=#{link}
 			, content=#{content}
-			, gender=#{gender}
+			, boardGender=#{boardGender}
 			
 			
 		WHERE

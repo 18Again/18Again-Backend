@@ -6,7 +6,9 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -120,6 +122,25 @@ public class UserController {
 			e.printStackTrace();
 			
 			return ResponseEntity.badRequest().build();
+		}
+	}
+	
+	@DeleteMapping("/{id}")
+	ResponseEntity<Integer> deleteUser(@SessionAttribute(name = SessionConstants.LOGIN_USER, required = false) UserDTO loginUser, @PathVariable("id") long id, HttpServletRequest request) {
+		if (loginUser==null || loginUser.getId()!=id)
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+		else {
+			int result = userService.deleteUser(loginUser.getId());
+			
+			if (result>0) {
+				HttpSession session = request.getSession(false);
+				session.invalidate();
+				loginUser = null;
+				
+				return ResponseEntity.ok(result);
+			} else {
+				return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+			}
 		}
 	}
 }
