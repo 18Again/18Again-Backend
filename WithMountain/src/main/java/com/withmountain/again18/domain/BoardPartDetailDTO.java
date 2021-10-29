@@ -9,6 +9,13 @@ public class BoardPartDetailDTO {
 	private int gender;
 	private String content;
 	private String link;
+
+	public String getLink() {
+		return link;
+	}
+	public void setLink(String link) {
+		this.link = link;
+	}
 	public int getId() {
 		return id;
 	}
@@ -45,18 +52,11 @@ public class BoardPartDetailDTO {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public String getLink() {
-		return link;
-	}
-	public void setLink(String link) {
-		this.link = link;
-	}
 	@Override
 	public String toString() {
 		return "BoardPartDetailDTO [id=" + id + ", title=" + title + ", date=" + date + ", member=" + member
 				+ ", gender=" + gender + ", content=" + content + ", link=" + link + "]";
 	}
-	
 
 	
 	

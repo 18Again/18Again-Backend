@@ -1,4 +1,3 @@
-
 package com.withmountain.again18.controller;
 
 import java.util.ArrayList;
@@ -46,11 +45,16 @@ public class BoardController {
 	
 	
 	@RequestMapping(value="/board/write",method=RequestMethod.POST)
-	public int insertBoard(@RequestBody BoardDTO board) throws Exception{
-		boardService.insertBoard(board);
-		int userId;
-		userId=boardService.insertBoardReturnId();
-		return userId;
+	public ResponseEntity<Integer> insertBoard(@SessionAttribute(name = SessionConstants.LOGIN_USER, required = false) UserDTO loginUser, @RequestBody BoardDTO board) throws Exception{
+		if (loginUser==null) {
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+		} else {
+			board.setUserId(loginUser.getId().intValue());
+			boardService.insertBoard(board);
+			int userId=boardService.insertBoardReturnId();
+			return ResponseEntity.ok(userId);
+		}
+		
 	}
 	
 	
@@ -95,11 +99,17 @@ public class BoardController {
 	*/
 	
 	@RequestMapping(value="/board/update/{boardId}",method=RequestMethod.PUT)
-	public String updateBoard(@RequestBody BoardDTO board,@PathVariable("boardId") int boardId) throws Exception{
+	public ResponseEntity<String> updateBoard(@SessionAttribute(name = SessionConstants.LOGIN_USER, required = false) UserDTO loginUser, @RequestBody BoardDTO board,@PathVariable("boardId") int boardId) throws Exception{
 		//System.out.println(board.toString());
-		board.setId(boardId);
-		boardService.updateBoard(board);
-		return "redirect:/board";
+		if (loginUser==null) {
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+		} else {
+			board.setUserId(loginUser.getId().intValue());
+			board.setId(boardId);
+			boardService.updateBoard(board);
+			return ResponseEntity.ok("redirect:/board");	
+		}
+		
 	}
 	
 	@RequestMapping(value="/board/{boardId}",method=RequestMethod.DELETE)
@@ -114,7 +124,7 @@ public class BoardController {
 		
 		for (BoardUserDTO boardUser: boardUsers) {
 			System.out.println(boardUser.toString());
-			BoardListResDTO recommendBoard = new BoardListResDTO(boardUser.getBoard().getId(), boardUser.getUser().getNickname(), boardUser.getUser().getImoji(), boardUser.getBoard().getTitle(), boardUser.getBoard().getDate(), boardUser.getBoard().getUpdateTime(), boardUser.getBoard().getMember(), boardUser.getBoard().getBoardGender());
+			BoardListResDTO recommendBoard = new BoardListResDTO(boardUser.getBoard().getId(), boardUser.getUser().getNickname(), boardUser.getUser().getImoji(), boardUser.getBoard().getTitle(), boardUser.getBoard().getDate(), boardUser.getBoard().getUpdateTime(), boardUser.getBoard().getMember(), boardUser.getBoard().getGender());
 			recommendBoards.add(recommendBoard);
 		}
 		
